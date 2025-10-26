@@ -14,50 +14,47 @@
         }
 
         :root {
-            --primary: #2563EB;
-            --secondary: #059669;
-            --accent: #7C3AED;
-            --dark: #1E293B;
-            --light: #F8FAFC;
-            --gray: #64748B;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --error: #EF4444;
+            --primary: #4285F4;
+            --primary-light: #8AB4F8;
+            --primary-dark: #1A73E8;
+            --secondary: #34A853;
+            --accent: #9C27B0;
+            --light: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #E8EAED;
+            --dark-gray: #5F6368;
+            --dark: #202124;
+            --success: #34A853;
+            --warning: #FBBC05;
+            --error: #EA4335;
             --card-bg: #FFFFFF;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --sidebar-width: 250px;
         }
 
         body {
-            background: var(--light);
+            background: var(--light-gray);
             color: var(--dark);
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         .app-container {
-            min-height: 100vh;
-            padding-bottom: 80px;
-            background: var(--light);
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 1.5rem 1rem 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            min-height: 100vh;
+        }
+
+        /* Sidebar for Desktop */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--light);
+            color: var(--dark);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
         .logo {
@@ -65,17 +62,115 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1.3rem;
-            font-weight: 700;
+            font-weight: 600;
+            color: var(--primary);
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-label {
+            font-weight: 500;
+        }
+
+        .nav-badge {
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding-bottom: 80px;
+            background: var(--light-gray);
+        }
+
+        /* Header */
+        .header {
+            background: var(--light);
+            color: var(--dark);
+            padding: 1.2rem 1.5rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-header {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--light);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .search-bar {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 25px;
-            padding: 0.8rem 1rem;
+            background: var(--light-gray);
+            border: 1px solid var(--medium-gray);
+            border-radius: 24px;
+            padding: 0.7rem 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 1rem;
+            transition: all 0.2s;
+            width: 400px;
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+            border-color: var(--primary);
         }
 
         .search-bar input {
@@ -88,43 +183,75 @@
         }
 
         .search-bar i {
-            color: var(--gray);
+            color: var(--dark-gray);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-action-btn {
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid var(--medium-gray);
+            padding: 0.7rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: all 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .user-action-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary-dark);
         }
 
         .quick-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             overflow-x: auto;
-            padding-bottom: 0.5rem;
+            padding: 1rem 1.5rem;
+            scrollbar-width: none;
+        }
+
+        .quick-actions::-webkit-scrollbar {
+            display: none;
         }
 
         .action-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.2rem;
-            border-radius: 15px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid var(--medium-gray);
+            padding: 0.7rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
             white-space: nowrap;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
+            transition: all 0.2s;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .action-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary-dark);
         }
 
-        /* Main Content */
-        .main-content {
-            padding: 1rem;
-        }
-
+        /* Content Pages */
         .page {
             display: none;
             animation: fadeIn 0.3s ease;
+            padding: 1.5rem;
         }
 
         .page.active {
@@ -145,63 +272,67 @@
         }
 
         .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--dark);
         }
 
         .see-all {
             color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 500;
             text-decoration: none;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .see-all:hover {
+            color: var(--primary-dark);
         }
 
         /* Cards */
         .card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 1.2rem;
             margin-bottom: 1rem;
             box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.2s;
             cursor: pointer;
+            border: 1px solid var(--medium-gray);
         }
 
         .card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-hover);
         }
 
         /* Products Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .product-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: all 0.2s;
             cursor: pointer;
+            border: 1px solid var(--medium-gray);
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
         .product-image {
-            height: 120px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
             position: relative;
         }
 
@@ -218,20 +349,24 @@
         }
 
         .product-content {
-            padding: 1rem;
+            padding: 1.2rem;
         }
 
         .product-title {
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             margin-bottom: 0.3rem;
             color: var(--dark);
             line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .product-price {
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: 600;
             color: var(--primary);
             margin: 0.3rem 0;
         }
@@ -240,46 +375,50 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
-            font-size: 0.7rem;
-            color: var(--gray);
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.8rem;
         }
 
         .seller-avatar {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: var(--accent);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-weight: bold;
         }
 
         .buy-btn {
-            background: var(--success);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 0.8rem;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 0.7rem;
+            border-radius: 6px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             width: 100%;
-            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
         }
 
         .buy-btn:hover {
-            background: #059669;
-            transform: translateY(-2px);
+            background: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         /* Events */
         .events-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
         }
 
         .event-card {
@@ -290,17 +429,17 @@
         }
 
         .event-date {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: var(--primary);
             color: white;
-            padding: 1rem;
-            border-radius: 12px;
+            padding: 0.8rem;
+            border-radius: 10px;
             text-align: center;
             min-width: 70px;
         }
 
         .event-day {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1;
         }
 
@@ -314,15 +453,15 @@
         }
 
         .event-title {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 500;
             margin-bottom: 0.3rem;
             color: var(--dark);
         }
 
         .event-location {
-            font-size: 0.8rem;
-            color: var(--gray);
+            font-size: 0.9rem;
+            color: var(--dark-gray);
             display: flex;
             align-items: center;
             gap: 0.3rem;
@@ -330,30 +469,33 @@
         }
 
         .event-time {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .register-btn {
-            background: var(--success);
+            background: var(--secondary);
             color: white;
             border: none;
             padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 6px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .register-btn:hover {
-            background: #059669;
-            transform: translateY(-2px);
+            background: #2E8B47;
+            transform: translateY(-1px);
         }
 
         .register-btn.registered {
-            background: var(--gray);
+            background: var(--dark-gray);
             cursor: not-allowed;
         }
 
@@ -368,16 +510,18 @@
             display: flex;
             gap: 1rem;
             align-items: flex-start;
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            border: 1px solid var(--medium-gray);
         }
 
         .notification-card:hover {
-            transform: translateX(5px);
+            transform: translateX(3px);
+            box-shadow: var(--shadow-hover);
         }
 
         .notification-card.read {
@@ -385,9 +529,9 @@
         }
 
         .notification-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -412,78 +556,80 @@
         }
 
         .notification-title {
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.3rem;
             color: var(--dark);
         }
 
         .notification-message {
             font-size: 0.9rem;
-            color: var(--gray);
+            color: var(--dark-gray);
             margin-bottom: 0.5rem;
             line-height: 1.4;
         }
 
         .notification-time {
-            font-size: 0.7rem;
-            color: var(--gray);
+            font-size: 0.75rem;
+            color: var(--dark-gray);
         }
 
         /* Profile */
         .profile-header {
             text-align: center;
             padding: 2rem 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            border-radius: 0 0 20px 20px;
-            margin: -1rem -1rem 2rem;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--medium-gray);
         }
 
         .profile-avatar {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: var(--primary-light);
+            color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
             margin: 0 auto 1rem;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            border: 3px solid var(--medium-gray);
         }
 
         .profile-name {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 600;
             margin-bottom: 0.3rem;
         }
 
         .profile-role {
-            opacity: 0.9;
+            color: var(--dark-gray);
             font-size: 1rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .stat-item {
             background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 12px;
+            padding: 1.5rem;
+            border-radius: 10px;
             text-align: center;
             box-shadow: var(--shadow);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            border: 1px solid var(--medium-gray);
         }
 
         .stat-item:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             background: var(--primary);
             color: white;
         }
@@ -493,15 +639,15 @@
         }
 
         .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 600;
             color: var(--primary);
             margin-bottom: 0.3rem;
         }
 
         .stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
+            font-size: 0.85rem;
+            color: var(--dark-gray);
         }
 
         .stat-item:hover .stat-label {
@@ -509,34 +655,35 @@
         }
 
         .profile-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: all 0.2s;
             cursor: pointer;
+            border: 1px solid var(--medium-gray);
         }
 
         .menu-item:hover {
             background: var(--primary);
             color: white;
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
 
         .menu-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--light);
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            background: var(--light-gray);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -550,63 +697,62 @@
 
         .menu-text {
             flex: 1;
-            font-weight: 600;
+            font-weight: 500;
         }
 
-        /* Bottom Navigation */
+        /* Bottom Navigation for Mobile */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--card-bg);
-            display: flex;
+            background: var(--light);
+            display: none;
             justify-content: space-around;
-            padding: 0.8rem 0;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 0 auto;
+            padding: 0.7rem 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
             z-index: 1000;
+            border-top: 1px solid var(--medium-gray);
         }
 
-        .nav-item {
+        .nav-item-mobile {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.3rem;
             text-decoration: none;
-            color: var(--gray);
-            transition: all 0.3s;
+            color: var(--dark-gray);
+            transition: all 0.2s;
             padding: 0.5rem;
-            border-radius: 12px;
+            border-radius: 10px;
             min-width: 60px;
             cursor: pointer;
         }
 
-        .nav-item.active {
+        .nav-item-mobile.active {
             color: var(--primary);
-            background: rgba(37, 99, 235, 0.1);
+            background: var(--primary-light);
         }
 
-        .nav-icon {
-            font-size: 1.3rem;
+        .nav-icon-mobile {
+            font-size: 1.2rem;
         }
 
-        .nav-label {
-            font-size: 0.7rem;
-            font-weight: 600;
+        .nav-label-mobile {
+            font-size: 0.65rem;
+            font-weight: 500;
         }
 
-        .nav-badge {
+        .nav-badge-mobile {
             position: absolute;
             top: 0;
             right: 0;
             background: var(--error);
             color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
+            width: 16px;
+            height: 16px;
+            font-size: 0.65rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -633,17 +779,18 @@
 
         .modal-content {
             background: white;
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 1.8rem;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
             animation: modalSlideIn 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         @keyframes modalSlideIn {
-            from { transform: translateY(-50px); opacity: 0; }
+            from { transform: translateY(-30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
@@ -656,42 +803,50 @@
 
         .modal-title {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--dark);
         }
 
         .close-modal {
             background: none;
             border: none;
-            font-size: 1.5rem;
-            color: var(--gray);
+            font-size: 1.4rem;
+            color: var(--dark-gray);
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 0.4rem;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            background: var(--light-gray);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.3rem;
         }
 
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--dark);
         }
 
         .form-input, .form-select, .form-textarea {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 0.9rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.2s;
+            background: var(--light);
         }
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
         }
 
         .form-textarea {
@@ -700,13 +855,13 @@
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 0.9rem 1.8rem;
             border: none;
-            border-radius: 12px;
-            font-weight: 600;
+            border-radius: 8px;
+            font-weight: 500;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -719,8 +874,9 @@
         }
 
         .btn-primary:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .btn-block {
@@ -730,14 +886,17 @@
         /* Search Results */
         .search-results {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 1rem;
-            margin-top: 1rem;
-            box-shadow: var(--shadow);
+            margin-top: 0.5rem;
+            box-shadow: var(--shadow-hover);
             display: none;
             position: absolute;
-            width: calc(100% - 2rem);
+            width: 400px;
             z-index: 101;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--medium-gray);
         }
 
         .search-results.active {
@@ -745,14 +904,14 @@
         }
 
         .search-result-item {
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--medium-gray);
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.2s;
         }
 
         .search-result-item:hover {
-            background: var(--light);
+            background: var(--light-gray);
         }
 
         .search-result-item:last-child {
@@ -762,38 +921,41 @@
         /* Notes Page */
         .notes-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .note-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: all 0.2s;
             cursor: pointer;
             text-align: center;
+            border: 1px solid var(--medium-gray);
         }
 
         .note-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
 
         .note-icon {
             font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .note-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
             color: var(--dark);
+            font-size: 1.1rem;
         }
 
         .note-subject {
-            color: var(--gray);
+            color: var(--dark-gray);
             font-size: 0.9rem;
         }
 
@@ -801,18 +963,22 @@
             background: var(--primary);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 0.5rem;
+            transition: all 0.2s;
+            margin-top: 0.8rem;
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
         }
 
         .download-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
+            background: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         /* My Listings Page */
@@ -820,18 +986,20 @@
             display: flex;
             gap: 1rem;
             align-items: center;
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             margin-bottom: 1rem;
+            border: 1px solid var(--medium-gray);
         }
 
         .listing-image {
             width: 80px;
             height: 80px;
-            border-radius: 12px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -844,22 +1012,25 @@
         }
 
         .listing-title {
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.3rem;
             color: var(--dark);
+            font-size: 1.1rem;
         }
 
         .listing-price {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--primary);
             margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
 
         .listing-status {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.3rem 0.7rem;
+            border-radius: 16px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 500;
+            display: inline-block;
         }
 
         .status-available {
@@ -868,15 +1039,15 @@
         }
 
         .status-sold {
-            background: var(--gray);
+            background: var(--dark-gray);
             color: white;
         }
 
         /* Saved Items Page */
         .saved-items-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         /* Help & Support Page */
@@ -885,17 +1056,19 @@
         }
 
         .help-item {
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 10px;
             margin-bottom: 0.5rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            border: 1px solid var(--medium-gray);
         }
 
         .help-item:hover {
             background: var(--primary);
             color: white;
+            transform: translateX(3px);
         }
 
         /* Utility Classes */
@@ -922,24 +1095,211 @@
         .mt-2 {
             margin-top: 2rem;
         }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 3000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: toastSlideUp 0.3s ease;
+        }
+
+        @keyframes toastSlideUp {
+            from { bottom: 60px; opacity: 0; }
+            to { bottom: 90px; opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .search-bar {
+                width: 300px;
+            }
+            
+            .mobile-header {
+                display: flex;
+            }
+            
+            .bottom-nav {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-bar {
+                width: 200px;
+            }
+            
+            .products-grid, .notes-grid, .saved-items-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .events-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-menu {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .header-content {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .search-results {
+                width: calc(100% - 2rem);
+            }
+            
+            .products-grid, .notes-grid, .saved-items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                padding: 1rem;
+            }
+            
+            .page {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-content">
+        <!-- Sidebar for Desktop -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>CampusConnect</span>
+            </div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-item active" onclick="showPage('home')">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span class="nav-label">Home</span>
+                </div>
+                <div class="nav-item" onclick="showPage('events')">
+                    <i class="fas fa-calendar-alt nav-icon"></i>
+                    <span class="nav-label">Events</span>
+                </div>
+                <div class="nav-item" onclick="showPage('notes')">
+                    <i class="fas fa-file-alt nav-icon"></i>
+                    <span class="nav-label">Study Notes</span>
+                </div>
+                <div class="nav-item" onclick="showPage('notifications')">
+                    <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
+                        <i class="fas fa-bell nav-icon"></i>
+                        <span class="nav-label">Notifications</span>
+                        <span class="nav-badge" id="sidebarNotificationBadge">3</span>
+                    </div>
+                </div>
+                <div class="nav-item" onclick="showPage('profile')">
+                    <i class="fas fa-user nav-icon"></i>
+                    <span class="nav-label">Profile</span>
+                </div>
+                <div class="nav-item" onclick="showPage('myListings')">
+                    <i class="fas fa-shopping-bag nav-icon"></i>
+                    <span class="nav-label">My Listings</span>
+                </div>
+                <div class="nav-item" onclick="showPage('savedItems')">
+                    <i class="fas fa-heart nav-icon"></i>
+                    <span class="nav-label">Saved Items</span>
+                </div>
+                <div class="nav-item" onclick="showPage('helpSupport')">
+                    <i class="fas fa-question-circle nav-icon"></i>
+                    <span class="nav-label">Help & Support</span>
+                </div>
+                <div class="nav-item" onclick="showSellModal()">
+                    <i class="fas fa-tag nav-icon"></i>
+                    <span class="nav-label">Sell Item</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Mobile Header -->
+            <div class="mobile-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <div class="logo">
                     <i class="fas fa-university"></i>
                     <span>CampusConnect</span>
                 </div>
+                <div style="width: 40px;"></div> <!-- Spacer for alignment -->
             </div>
-            
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search for books, notes, events..." onkeyup="handleSearch()">
+
+            <!-- Desktop Header -->
+            <div class="header">
+                <div class="header-content">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search for books, notes, events..." onkeyup="handleSearch()">
+                    </div>
+                    
+                    <!-- Search Results -->
+                    <div class="search-results" id="searchResults">
+                        <!-- Search results will appear here -->
+                    </div>
+                </div>
+                
+                <div class="user-actions">
+                    <button class="user-action-btn" onclick="showSellModal()">
+                        <i class="fas fa-tag"></i> Sell Item
+                    </button>
+                    <button class="user-action-btn" onclick="showCreateEventModal()">
+                        <i class="fas fa-calendar-plus"></i> Create Event
+                    </button>
+                </div>
             </div>
-            
+
+            <!-- Quick Actions -->
             <div class="quick-actions">
                 <button class="action-btn" onclick="showMarketplace()">
                     <i class="fas fa-shopping-cart"></i> Buy
@@ -953,213 +1313,214 @@
                 <button class="action-btn" onclick="showPage('notes')">
                     <i class="fas fa-file-alt"></i> Notes
                 </button>
+                <button class="action-btn" onclick="showPage('notifications')">
+                    <i class="fas fa-bell"></i> Notifications
+                </button>
             </div>
 
-            <!-- Search Results -->
-            <div class="search-results" id="searchResults">
-                <!-- Search results will appear here -->
+            <!-- Content Pages -->
+            <div class="main-content-pages">
+                <!-- Home Page -->
+                <div id="home" class="page active">
+                    <div class="section-header">
+                        <h2 class="section-title">Trending Items</h2>
+                        <a class="see-all" onclick="showMarketplace()">See All</a>
+                    </div>
+                    
+                    <div class="products-grid" id="trendingProducts">
+                        <!-- Trending products will be loaded here -->
+                    </div>
+
+                    <div class="section-header">
+                        <h2 class="section-title">Upcoming Events</h2>
+                        <a class="see-all" onclick="showPage('events')">See All</a>
+                    </div>
+                    
+                    <div class="events-list" id="upcomingEvents">
+                        <!-- Upcoming events will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Events Page -->
+                <div id="events" class="page">
+                    <div class="section-header">
+                        <h2 class="section-title">College Events</h2>
+                        <a class="see-all" onclick="showCreateEventModal()">Create Event</a>
+                    </div>
+                    
+                    <div class="events-list" id="allEvents">
+                        <!-- All events will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Notes Page -->
+                <div id="notes" class="page">
+                    <div class="section-header">
+                        <h2 class="section-title">Study Notes</h2>
+                        <a class="see-all" onclick="showUploadNotesModal()">Upload Notes</a>
+                    </div>
+                    
+                    <div class="notes-grid" id="notesGrid">
+                        <!-- Notes will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Notifications Page -->
+                <div id="notifications" class="page">
+                    <div class="section-header">
+                        <h2 class="section-title">Notifications</h2>
+                        <a class="see-all" onclick="markAllNotificationsRead()">Mark All Read</a>
+                    </div>
+                    
+                    <div class="notifications-list" id="notificationsList">
+                        <!-- Notifications will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Profile Page -->
+                <div id="profile" class="page">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h1 class="profile-name">Sai Prasad</h1>
+                        <p class="profile-role">Computer Science Student</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item" onclick="showPage('myListings')">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Listings</div>
+                        </div>
+                        <div class="stat-item" onclick="showPage('soldItems')">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Sold</div>
+                        </div>
+                        <div class="stat-item" onclick="showRatingsModal()">
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-menu">
+                        <div class="menu-item" onclick="showEditProfileModal()">
+                            <div class="menu-icon">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <div class="menu-text">Edit Profile</div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="menu-item" onclick="showPage('myListings')">
+                            <div class="menu-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="menu-text">My Listings</div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="menu-item" onclick="showPage('savedItems')">
+                            <div class="menu-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="menu-text">Saved Items</div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="menu-item" onclick="showSettingsModal()">
+                            <div class="menu-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="menu-text">Settings</div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="menu-item" onclick="showPage('helpSupport')">
+                            <div class="menu-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="menu-text">Help & Support</div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Listings Page -->
+                <div id="myListings" class="page">
+                    <div class="section-header">
+                        <h2 class="section-title">My Listings</h2>
+                        <a class="see-all" onclick="showPage('profile')">Back to Profile</a>
+                    </div>
+                    
+                    <div id="myListingsContainer">
+                        <!-- User's listings will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Saved Items Page -->
+                <div id="savedItems" class="page">
+                    <div class="section-header">
+                        <h2 class="section-title">Saved Items</h2>
+                        <a class="see-all" onclick="showPage('profile')">Back to Profile</a>
+                    </div>
+                    
+                    <div class="saved-items-grid" id="savedItemsGrid">
+                        <!-- Saved items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Help & Support Page -->
+                <div id="helpSupport" class="page">
+                    <div class="section-header">
+                        <h2 class="section-title">Help & Support</h2>
+                        <a class="see-all" onclick="showPage('profile')">Back to Profile</a>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h3 class="mb-1">Frequently Asked Questions</h3>
+                        <div class="help-item" onclick="showFAQAnswer(1)">How do I sell an item?</div>
+                        <div class="help-item" onclick="showFAQAnswer(2)">How do I contact a seller?</div>
+                        <div class="help-item" onclick="showFAQAnswer(3)">What payment methods are accepted?</div>
+                        <div class="help-item" onclick="showFAQAnswer(4)">How do I report an issue?</div>
+                    </div>
+
+                    <div class="help-section">
+                        <h3 class="mb-1">Contact Support</h3>
+                        <div class="card">
+                            <p><strong>Email:</strong> support@campusconnect.edu</p>
+                            <p><strong>Phone:</strong> (555) 123-4567</p>
+                            <p><strong>Office Hours:</strong> Mon-Fri, 9AM-5PM</p>
+                            <button class="btn btn-primary mt-1" onclick="contactSupport()">
+                                <i class="fas fa-envelope"></i> Send Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Home Page -->
-            <div id="home" class="page active">
-                <div class="section-header">
-                    <h2 class="section-title">Trending Items</h2>
-                    <a class="see-all" onclick="showMarketplace()">See All</a>
-                </div>
-                
-                <div class="products-grid" id="trendingProducts">
-                    <!-- Trending products will be loaded here -->
-                </div>
-
-                <div class="section-header">
-                    <h2 class="section-title">Upcoming Events</h2>
-                    <a class="see-all" onclick="showPage('events')">See All</a>
-                </div>
-                
-                <div class="events-list" id="upcomingEvents">
-                    <!-- Upcoming events will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Events Page -->
-            <div id="events" class="page">
-                <div class="section-header">
-                    <h2 class="section-title">College Events</h2>
-                    <a class="see-all" onclick="showCreateEventModal()">Create Event</a>
-                </div>
-                
-                <div class="events-list" id="allEvents">
-                    <!-- All events will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Notes Page -->
-            <div id="notes" class="page">
-                <div class="section-header">
-                    <h2 class="section-title">Study Notes</h2>
-                    <a class="see-all" onclick="showUploadNotesModal()">Upload Notes</a>
-                </div>
-                
-                <div class="notes-grid" id="notesGrid">
-                    <!-- Notes will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Notifications Page -->
-            <div id="notifications" class="page">
-                <div class="section-header">
-                    <h2 class="section-title">Notifications</h2>
-                    <a class="see-all" onclick="markAllNotificationsRead()">Mark All Read</a>
-                </div>
-                
-                <div class="notifications-list" id="notificationsList">
-                    <!-- Notifications will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Profile Page -->
-            <div id="profile" class="page">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h1 class="profile-name">Sai Prasad</h1>
-                    <p class="profile-role">Computer Science Student</p>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-item" onclick="showPage('myListings')">
-                        <div class="stat-value">12</div>
-                        <div class="stat-label">Listings</div>
-                    </div>
-                    <div class="stat-item" onclick="showPage('soldItems')">
-                        <div class="stat-value">8</div>
-                        <div class="stat-label">Sold</div>
-                    </div>
-                    <div class="stat-item" onclick="showRatingsModal()">
-                        <div class="stat-value">4.8</div>
-                        <div class="stat-label">Rating</div>
-                    </div>
-                </div>
-                
-                <div class="profile-menu">
-                    <div class="menu-item" onclick="showEditProfileModal()">
-                        <div class="menu-icon">
-                            <i class="fas fa-user-edit"></i>
-                        </div>
-                        <div class="menu-text">Edit Profile</div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    <div class="menu-item" onclick="showPage('myListings')">
-                        <div class="menu-icon">
-                            <i class="fas fa-shopping-bag"></i>
-                        </div>
-                        <div class="menu-text">My Listings</div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    <div class="menu-item" onclick="showPage('savedItems')">
-                        <div class="menu-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="menu-text">Saved Items</div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    <div class="menu-item" onclick="showSettingsModal()">
-                        <div class="menu-icon">
-                            <i class="fas fa-cog"></i>
-                        </div>
-                        <div class="menu-text">Settings</div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    <div class="menu-item" onclick="showPage('helpSupport')">
-                        <div class="menu-icon">
-                            <i class="fas fa-question-circle"></i>
-                        </div>
-                        <div class="menu-text">Help & Support</div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- My Listings Page -->
-            <div id="myListings" class="page">
-                <div class="section-header">
-                    <h2 class="section-title">My Listings</h2>
-                    <a class="see-all" onclick="showPage('profile')">Back to Profile</a>
-                </div>
-                
-                <div id="myListingsContainer">
-                    <!-- User's listings will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Saved Items Page -->
-            <div id="savedItems" class="page">
-                <div class="section-header">
-                    <h2 class="section-title">Saved Items</h2>
-                    <a class="see-all" onclick="showPage('profile')">Back to Profile</a>
-                </div>
-                
-                <div class="saved-items-grid" id="savedItemsGrid">
-                    <!-- Saved items will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Help & Support Page -->
-            <div id="helpSupport" class="page">
-                <div class="section-header">
-                    <h2 class="section-title">Help & Support</h2>
-                    <a class="see-all" onclick="showPage('profile')">Back to Profile</a>
-                </div>
-                
-                <div class="help-section">
-                    <h3 class="mb-1">Frequently Asked Questions</h3>
-                    <div class="help-item" onclick="showFAQAnswer(1)">How do I sell an item?</div>
-                    <div class="help-item" onclick="showFAQAnswer(2)">How do I contact a seller?</div>
-                    <div class="help-item" onclick="showFAQAnswer(3)">What payment methods are accepted?</div>
-                    <div class="help-item" onclick="showFAQAnswer(4)">How do I report an issue?</div>
-                </div>
-
-                <div class="help-section">
-                    <h3 class="mb-1">Contact Support</h3>
-                    <div class="card">
-                        <p><strong>Email:</strong> support@campusconnect.edu</p>
-                        <p><strong>Phone:</strong> (555) 123-4567</p>
-                        <p><strong>Office Hours:</strong> Mon-Fri, 9AM-5PM</p>
-                        <button class="btn btn-primary mt-1" onclick="contactSupport()">
-                            <i class="fas fa-envelope"></i> Send Message
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Navigation -->
+        <!-- Bottom Navigation for Mobile -->
         <div class="bottom-nav">
-            <div class="nav-item active" onclick="showPage('home')">
-                <i class="fas fa-home nav-icon"></i>
-                <span class="nav-label">Home</span>
+            <div class="nav-item-mobile active" onclick="showPage('home')">
+                <i class="fas fa-home nav-icon-mobile"></i>
+                <span class="nav-label-mobile">Home</span>
             </div>
-            <div class="nav-item" onclick="showPage('events')">
-                <i class="fas fa-calendar-alt nav-icon"></i>
-                <span class="nav-label">Events</span>
+            <div class="nav-item-mobile" onclick="showPage('events')">
+                <i class="fas fa-calendar-alt nav-icon-mobile"></i>
+                <span class="nav-label-mobile">Events</span>
             </div>
-            <div class="nav-item" onclick="showPage('notifications')">
+            <div class="nav-item-mobile" onclick="showPage('notifications')">
                 <div style="position: relative;">
-                    <i class="fas fa-bell nav-icon"></i>
-                    <span class="nav-badge" id="notificationBadge">3</span>
+                    <i class="fas fa-bell nav-icon-mobile"></i>
+                    <span class="nav-badge-mobile" id="notificationBadge">3</span>
                 </div>
-                <span class="nav-label">Alerts</span>
+                <span class="nav-label-mobile">Alerts</span>
             </div>
-            <div class="nav-item" onclick="showPage('profile')">
-                <i class="fas fa-user nav-icon"></i>
-                <span class="nav-label">Profile</span>
+            <div class="nav-item-mobile" onclick="showPage('profile')">
+                <i class="fas fa-user nav-icon-mobile"></i>
+                <span class="nav-label-mobile">Profile</span>
             </div>
         </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <!-- Sell Item Modal -->
     <div class="modal" id="sellModal">
@@ -1203,6 +1564,10 @@
                     <label class="form-label">Description</label>
                     <textarea class="form-textarea" id="itemDescription" placeholder="Describe your item in detail..." required></textarea>
                 </div>
+                <div class="form-group">
+                    <label class="form-label">Image URL</label>
+                    <input type="text" class="form-input" id="itemImage" placeholder="https://example.com/image.jpg">
+                </div>
                 <button type="button" class="btn btn-primary btn-block" onclick="handleSellItem()">
                     <i class="fas fa-upload"></i> List Item for Sale
                 </button>
@@ -1220,11 +1585,11 @@
             <form id="profileForm">
                 <div class="form-group">
                     <label class="form-label">Full Name</label>
-                    <input type="text" class="form-input" id="profileName" value="John Smith" required>
+                    <input type="text" class="form-input" id="profileName" value="Sai Prasad" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="profileEmail" value="john.smith@university.edu" required>
+                    <input type="email" class="form-input" id="profileEmail" value="sai.prasad@university.edu" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Major</label>
@@ -1286,8 +1651,33 @@
         </div>
     </div>
 
+    <!-- Purchase Modal -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Complete Purchase</h2>
+                <button class="close-modal" onclick="closeModal('purchaseModal')">&times;</button>
+            </div>
+            <div id="purchaseContent">
+                <!-- Purchase details will be loaded here -->
+            </div>
+            <div class="form-group mt-2">
+                <label class="form-label">Select Payment Method</label>
+                <select class="form-select" id="paymentMethod">
+                    <option value="cash">Cash (In Person)</option>
+                    <option value="venmo">Venmo</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="campus">Campus Payment</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary btn-block mt-2" onclick="completePurchase()">
+                <i class="fas fa-shopping-cart"></i> Complete Purchase
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Enhanced Sample Data
+        // Enhanced Sample Data with Images
         let sampleProducts = [
             {
                 id: 1,
@@ -1296,7 +1686,8 @@
                 category: "books",
                 badge: "Popular",
                 seller: { name: "JS", avatar: "JS" },
-                description: "Latest edition, barely used with no highlights"
+                description: "Latest edition, barely used with no highlights",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
@@ -1305,7 +1696,8 @@
                 category: "notes",
                 badge: "Digital",
                 seller: { name: "AS", avatar: "AS" },
-                description: "Complete semester notes with diagrams"
+                description: "Complete semester notes with diagrams",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 3,
@@ -1314,7 +1706,8 @@
                 category: "electronics",
                 badge: "Bestseller",
                 seller: { name: "MJ", avatar: "MJ" },
-                description: "TI-84 Plus with case and cables"
+                description: "TI-84 Plus with case and cables",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25856cd63?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 4,
@@ -1323,7 +1716,8 @@
                 category: "clothing",
                 badge: "New",
                 seller: { name: "TS", avatar: "TS" },
-                description: "Brand new with tags, official campus store"
+                description: "Brand new with tags, official campus store",
+                image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             }
         ];
 
@@ -1367,7 +1761,8 @@
                 subject: "Mathematics",
                 chapters: 12,
                 price: 5,
-                rating: 4.8
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
@@ -1375,7 +1770,8 @@
                 subject: "Physics",
                 chapters: 8,
                 price: 4,
-                rating: 4.6
+                rating: 4.6,
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 3,
@@ -1383,7 +1779,8 @@
                 subject: "Chemistry",
                 chapters: 10,
                 price: 6,
-                rating: 4.9
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 4,
@@ -1391,7 +1788,8 @@
                 subject: "Computer Science",
                 chapters: 15,
                 price: 7,
-                rating: 4.7
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             }
         ];
 
@@ -1401,21 +1799,24 @@
                 title: "Calculus Textbook",
                 price: 35,
                 status: "available",
-                views: 24
+                views: 24,
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
                 title: "Physics Notes",
                 price: 8,
                 status: "sold",
-                views: 45
+                views: 45,
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 3,
                 title: "Graphing Calculator",
                 price: 45,
                 status: "available",
-                views: 18
+                views: 18,
+                image: "https://images.unsplash.com/photo-1558618666-fcd25856cd63?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             }
         ];
 
@@ -1425,14 +1826,16 @@
                 title: "Programming Books Bundle",
                 price: 40,
                 category: "books",
-                savedDate: "2024-10-20"
+                savedDate: "2024-10-20",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 5,
                 title: "Scientific Calculator",
                 price: 15,
                 category: "electronics",
-                savedDate: "2024-10-18"
+                savedDate: "2024-10-18",
+                image: "https://images.unsplash.com/photo-1583536669170-1fd04889fd6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             }
         ];
 
@@ -1466,6 +1869,8 @@
             }
         ];
 
+        let currentProduct = null;
+
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             displayTrendingProducts();
@@ -1476,7 +1881,38 @@
             displayMyListings();
             displaySavedItems();
             updateNotificationBadge();
+            
+            // Set current date for event creation
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('eventDate').value = formattedDate;
+            
+            // Check screen size and adjust layout
+            checkScreenSize();
+            window.addEventListener('resize', checkScreenSize);
         });
+
+        // Check screen size and adjust layout
+        function checkScreenSize() {
+            const sidebar = document.getElementById('sidebar');
+            const bottomNav = document.querySelector('.bottom-nav');
+            
+            if (window.innerWidth <= 1024) {
+                // Mobile layout
+                sidebar.classList.remove('active');
+                bottomNav.style.display = 'flex';
+            } else {
+                // Desktop layout
+                sidebar.classList.add('active');
+                bottomNav.style.display = 'none';
+            }
+        }
+
+        // Toggle sidebar for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
 
         // Page Navigation
         function showPage(pageId) {
@@ -1490,26 +1926,41 @@
                 item.classList.remove('active');
             });
             
+            document.querySelectorAll('.nav-item-mobile').forEach(item => {
+                item.classList.remove('active');
+            });
+            
             // Show selected page
             document.getElementById(pageId).classList.add('active');
             
             // Update active nav item for main pages
             if (['home', 'events', 'notifications', 'profile'].includes(pageId)) {
                 const navItems = document.querySelectorAll('.nav-item');
+                const mobileNavItems = document.querySelectorAll('.nav-item-mobile');
+                
                 switch(pageId) {
                     case 'home':
                         navItems[0].classList.add('active');
+                        mobileNavItems[0].classList.add('active');
                         break;
                     case 'events':
                         navItems[1].classList.add('active');
+                        mobileNavItems[1].classList.add('active');
                         break;
                     case 'notifications':
-                        navItems[2].classList.add('active');
+                        navItems[3].classList.add('active');
+                        mobileNavItems[2].classList.add('active');
                         break;
                     case 'profile':
-                        navItems[3].classList.add('active');
+                        navItems[4].classList.add('active');
+                        mobileNavItems[3].classList.add('active');
                         break;
                 }
+            }
+            
+            // Close sidebar on mobile after navigation
+            if (window.innerWidth <= 1024) {
+                toggleSidebar();
             }
         }
 
@@ -1587,26 +2038,26 @@
                 if (item.type === 'product') {
                     resultItem.innerHTML = `
                         <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div class="seller-avatar">${item.seller.avatar}</div>
+                            <div style="width: 40px; height: 40px; border-radius: 8px; background-image: url('${item.image}'); background-size: cover; background-position: center;"></div>
                             <div>
-                                <div style="font-weight: 600;">${item.title}</div>
-                                <div style="color: var(--primary); font-weight: 700;">$${item.price}</div>
-                                <div style="font-size: 0.8rem; color: var(--gray);">Product • ${item.category}</div>
+                                <div style="font-weight: 500;">${item.title}</div>
+                                <div style="color: var(--primary); font-weight: 600;">$${item.price}</div>
+                                <div style="font-size: 0.8rem; color: var(--dark-gray);">Product • ${item.category}</div>
                             </div>
                         </div>
                     `;
                 } else if (item.type === 'event') {
                     resultItem.innerHTML = `
                         <div>
-                            <div style="font-weight: 600;">${item.title}</div>
-                            <div style="font-size: 0.8rem; color: var(--gray);">Event • ${item.location}</div>
+                            <div style="font-weight: 500;">${item.title}</div>
+                            <div style="font-size: 0.8rem; color: var(--dark-gray);">Event • ${item.location}</div>
                         </div>
                     `;
                 } else if (item.type === 'note') {
                     resultItem.innerHTML = `
                         <div>
-                            <div style="font-weight: 600;">${item.title}</div>
-                            <div style="font-size: 0.8rem; color: var(--gray);">Notes • ${item.subject}</div>
+                            <div style="font-weight: 500;">${item.title}</div>
+                            <div style="font-size: 0.8rem; color: var(--dark-gray);">Notes • ${item.subject}</div>
                         </div>
                     `;
                 }
@@ -1620,7 +2071,7 @@
             document.getElementById('searchInput').value = '';
 
             if (item.type === 'product') {
-                showProductDetail(item.id);
+                initiatePurchase(item.id);
             } else if (item.type === 'event') {
                 showEventDetail(item.id);
             } else if (item.type === 'note') {
@@ -1637,7 +2088,7 @@
                 displayUpcomingEvents();
                 
                 if (event.registered) {
-                    alert(`Successfully registered for ${event.title}!`);
+                    showToast(`Successfully registered for ${event.title}!`);
                     // Add notification
                     notifications.unshift({
                         id: notifications.length + 1,
@@ -1651,7 +2102,7 @@
                     displayNotifications();
                     updateNotificationBadge();
                 } else {
-                    alert(`Unregistered from ${event.title}`);
+                    showToast(`Unregistered from ${event.title}`);
                 }
             }
         }
@@ -1664,8 +2115,7 @@
             sampleProducts.forEach(product => {
                 const productCard = `
                     <div class="product-card">
-                        <div class="product-image">
-                            <i class="fas fa-${getProductIcon(product.category)}"></i>
+                        <div class="product-image" style="background-image: url('${product.image}')">
                             <div class="product-badge">${product.badge}</div>
                         </div>
                         <div class="product-content">
@@ -1675,7 +2125,7 @@
                                 <div class="seller-avatar">${product.seller.avatar}</div>
                                 ${product.seller.name}
                             </div>
-                            <button class="buy-btn" onclick="buyProduct(${product.id})">
+                            <button class="buy-btn" onclick="initiatePurchase(${product.id})">
                                 <i class="fas fa-shopping-cart"></i> Buy Now
                             </button>
                         </div>
@@ -1751,20 +2201,21 @@
             
             sampleNotes.forEach(note => {
                 const noteCard = `
-                    <div class="note-card">
-                        <div class="note-icon">
-                            <i class="fas fa-file-pdf"></i>
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('${note.image}')">
+                            <div class="product-badge">Notes</div>
                         </div>
-                        <div class="note-title">${note.title}</div>
-                        <div class="note-subject">${note.subject}</div>
-                        <div class="product-price">$${note.price}</div>
-                        <div class="product-seller">
-                            <i class="fas fa-star" style="color: var(--warning);"></i>
-                            ${note.rating}
+                        <div class="product-content">
+                            <div class="product-title">${note.title}</div>
+                            <div class="product-price">$${note.price}</div>
+                            <div class="product-seller">
+                                <i class="fas fa-star" style="color: var(--warning);"></i>
+                                ${note.rating}
+                            </div>
+                            <button class="buy-btn" onclick="downloadNotes(${note.id})">
+                                <i class="fas fa-download"></i> Download
+                            </button>
                         </div>
-                        <button class="download-btn" onclick="downloadNotes(${note.id})">
-                            <i class="fas fa-download"></i> Download
-                        </button>
                     </div>
                 `;
                 container.innerHTML += noteCard;
@@ -1778,8 +2229,8 @@
             myListings.forEach(listing => {
                 const listingItem = `
                     <div class="listing-item">
-                        <div class="listing-image">
-                            <i class="fas fa-box"></i>
+                        <div class="listing-image" style="background-image: url('${listing.image}')">
+                            <i class="fas fa-box" style="color: white;"></i>
                         </div>
                         <div class="listing-details">
                             <div class="listing-title">${listing.title}</div>
@@ -1789,7 +2240,7 @@
                             </div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 0.8rem; color: var(--gray);">${listing.views} views</div>
+                            <div style="font-size: 0.8rem; color: var(--dark-gray);">${listing.views} views</div>
                             <button class="btn btn-primary" style="margin-top: 0.5rem; padding: 0.5rem 1rem;" 
                                     onclick="editListing(${listing.id})">
                                 <i class="fas fa-edit"></i>
@@ -1808,8 +2259,7 @@
             savedItems.forEach(item => {
                 const savedCard = `
                     <div class="product-card">
-                        <div class="product-image">
-                            <i class="fas fa-${getProductIcon(item.category)}"></i>
+                        <div class="product-image" style="background-image: url('${item.image}')">
                             <div class="product-badge">Saved</div>
                         </div>
                         <div class="product-content">
@@ -1819,7 +2269,7 @@
                                 <i class="fas fa-calendar"></i>
                                 Saved on ${item.savedDate}
                             </div>
-                            <button class="buy-btn" onclick="buyProduct(${item.id})">
+                            <button class="buy-btn" onclick="initiatePurchase(${item.id})">
                                 <i class="fas fa-shopping-cart"></i> Buy Now
                             </button>
                         </div>
@@ -1851,27 +2301,57 @@
         }
 
         // Buy Product Functionality
-        function buyProduct(productId) {
-            const product = sampleProducts.find(p => p.id === productId);
+        function initiatePurchase(productId) {
+            const product = sampleProducts.find(p => p.id === productId) || 
+                           savedItems.find(p => p.id === productId);
+            
             if (product) {
-                const confirmBuy = confirm(`Are you sure you want to buy "${product.title}" for $${product.price}?`);
-                if (confirmBuy) {
-                    alert(`Successfully purchased ${product.title} for $${product.price}! Contact seller ${product.seller.name} for pickup details.`);
-                    
-                    // Add notification
-                    notifications.unshift({
-                        id: notifications.length + 1,
-                        type: "success",
-                        title: "Purchase Successful!",
-                        message: `You bought ${product.title} for $${product.price}`,
-                        time: "Just now",
-                        icon: "fas fa-shopping-bag",
-                        read: false
-                    });
-                    displayNotifications();
-                    updateNotificationBadge();
-                }
+                currentProduct = product;
+                const content = document.getElementById('purchaseContent');
+                content.innerHTML = `
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <div style="width: 80px; height: 80px; border-radius: 8px; background-image: url('${product.image}'); background-size: cover; background-position: center;"></div>
+                        <div>
+                            <h3 style="margin-bottom: 0.5rem;">${product.title}</h3>
+                            <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary);">$${product.price}</div>
+                            <div style="font-size: 0.9rem; color: var(--dark-gray); margin-top: 0.5rem;">Seller: ${product.seller ? product.seller.name : 'CampusConnect'}</div>
+                        </div>
+                    </div>
+                `;
+                showModal('purchaseModal');
             }
+        }
+
+        function completePurchase() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            if (currentProduct) {
+                showToast(`Purchase completed! You bought ${currentProduct.title} for $${currentProduct.price}. Contact seller for pickup details.`);
+                closeModal('purchaseModal');
+                
+                // Add notification
+                notifications.unshift({
+                    id: notifications.length + 1,
+                    type: "success",
+                    title: "Purchase Successful!",
+                    message: `You bought ${currentProduct.title} for $${currentProduct.price}`,
+                    time: "Just now",
+                    icon: "fas fa-shopping-bag",
+                    read: false
+                });
+                displayNotifications();
+                updateNotificationBadge();
+            }
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         // Sell Item Functionality
@@ -1881,9 +2361,10 @@
             const price = document.getElementById('itemPrice').value;
             const condition = document.getElementById('itemCondition').value;
             const description = document.getElementById('itemDescription').value;
+            const image = document.getElementById('itemImage').value || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80";
 
             if (!title || !category || !price || !condition || !description) {
-                alert('Please fill in all fields!');
+                showToast('Please fill in all fields!');
                 return;
             }
 
@@ -1894,8 +2375,9 @@
                 price: parseFloat(price),
                 category: category,
                 badge: "New",
-                seller: { name: "You", avatar: "JS" },
-                description: description
+                seller: { name: "You", avatar: "SP" },
+                description: description,
+                image: image
             };
 
             // Add to sample products
@@ -1906,7 +2388,7 @@
             
             // Close modal and show success message
             closeModal('sellModal');
-            alert('Your item has been listed successfully!');
+            showToast('Your item has been listed successfully!');
             
             // Reset form
             document.getElementById('sellForm').reset();
@@ -1926,7 +2408,7 @@
             
             // Close modal and show success message
             closeModal('editProfileModal');
-            alert('Profile updated successfully!');
+            showToast('Profile updated successfully!');
         }
 
         // Create Event Functionality
@@ -1938,7 +2420,7 @@
             const description = document.getElementById('eventDescription').value;
 
             if (!title || !date || !time || !location || !description) {
-                alert('Please fill in all fields!');
+                showToast('Please fill in all fields!');
                 return;
             }
 
@@ -1969,7 +2451,7 @@
             
             // Close modal and show success message
             closeModal('createEventModal');
-            alert('Event created successfully!');
+            showToast('Event created successfully!');
             
             // Reset form
             document.getElementById('eventForm').reset();
@@ -1979,7 +2461,7 @@
         function downloadNotes(noteId) {
             const note = sampleNotes.find(n => n.id === noteId);
             if (note) {
-                alert(`Downloading "${note.title}" notes...\nThis would download the PDF file in a real application.`);
+                showToast(`Downloading "${note.title}" notes...`);
             }
         }
 
@@ -1999,16 +2481,22 @@
             });
             displayNotifications();
             updateNotificationBadge();
+            showToast('All notifications marked as read');
         }
 
         function updateNotificationBadge() {
             const unreadCount = notifications.filter(n => !n.read).length;
             const badge = document.getElementById('notificationBadge');
+            const sidebarBadge = document.getElementById('sidebarNotificationBadge');
+            
             if (unreadCount > 0) {
                 badge.textContent = unreadCount;
                 badge.style.display = 'flex';
+                sidebarBadge.textContent = unreadCount;
+                sidebarBadge.style.display = 'flex';
             } else {
                 badge.style.display = 'none';
+                sidebarBadge.style.display = 'none';
             }
         }
 
@@ -2048,20 +2536,20 @@
         function editListing(listingId) {
             const listing = myListings.find(l => l.id === listingId);
             if (listing) {
-                alert(`Editing listing: ${listing.title}\nThis would open an edit form in a real application.`);
+                showToast(`Editing listing: ${listing.title}`);
             }
         }
 
         function showUploadNotesModal() {
-            alert('Upload Notes modal would open here with file upload and subject selection.');
+            showToast('Upload Notes feature coming soon!');
         }
 
         function showRatingsModal() {
-            alert('Ratings and reviews modal would open here.');
+            showToast('Ratings and reviews feature coming soon!');
         }
 
         function showSettingsModal() {
-            alert('Settings modal would open here.');
+            showToast('Settings feature coming soon!');
         }
 
         function showFAQAnswer(faqId) {
@@ -2075,7 +2563,7 @@
         }
 
         function contactSupport() {
-            alert('Support contact form would open here with email and message fields.');
+            showToast('Support contact form coming soon!');
         }
 
         // Close modal when clicking outside
